@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="redError">#980000</color>
+
+<!--    grayBlue-->
+    <color name="grayBlueDeep">#2E4C55</color>
+    <color name="grayBlueLight">#CFDDE2</color>
+
+<!--    purple-->
+    <color name="purpleDark">#2C0839</color>
+    <color name="purpleDeep">#540d6e</color>
+    <color name="purpleLight">#BF8AD3</color>
+
+<!--    green-->
+    <color name="greeneDark">#08472C</color>
+    <color name="greenDeep">#0ead69</color>
+    <color name="greenLight">#78DCB1</color>
+
+<!--    pink-->
+    <color name="pinkDark">#551623</color>
+    <color name="pinkDeep">#ee4266</color>
+    <color name="pinkLight">#E494A5</color>
+
+<!--    yellow-->ffd23f
+    <color name="yellowDark">#836A18</color>
+    <color name="yellowDeep">#ffd23f</color>
+    <color name="yellowLight">#F4E09E</color>
+
+<!--    sky-blue-->
+    <color name="skyBlueDark">#195547</color>
+    <color name="skyBlueDeep">#3bceac</color>
+    <color name="skyBlueLight">#91E4D1</color>
+</resources>
