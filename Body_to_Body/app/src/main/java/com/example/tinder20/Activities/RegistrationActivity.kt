@@ -1,15 +1,25 @@
 package com.example.tinder20.Activities
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tinder20.R
 import com.example.tinder20.databinding.ActivityRegistrationBinding
 import com.example.tinder20.functions.hashString
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -18,6 +28,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var mAuth : FirebaseAuth
     private lateinit var binding: ActivityRegistrationBinding
+    private lateinit var client: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +39,13 @@ class RegistrationActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         auth = Firebase.auth
+
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        client = GoogleSignIn.getClient(this, options)
 
         Log.d("TestTest", "RegistrationActivity - onCreate")
 
@@ -88,8 +106,42 @@ class RegistrationActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
         binding.btnSingIn.setOnClickListener{
-            startActivity(Intent(this, MainPageActivity::class.java))
+            signInGoogle()
         }
+    }
+
+    val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            if(task.isSuccessful){
+                val account : GoogleSignInAccount? = task.result
+                if(account != null) {
+                    updateUI(account)
+                }
+            }else{
+                Log.d("TestTest", "Exception while trying to register with google: ${task.exception.toString()}")
+                Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    private fun signInGoogle(){
+        val signInIntent = client.signInIntent
+        launcher.launch(signInIntent)
+    }
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+         auth.signInWithCredential(credential)
+             .addOnCompleteListener{
+                 if(it.isSuccessful){
+                     val intent : Intent = Intent(this, MainPageActivity::class.java)
+                     //intent.putExtra("ActivitySignOut", false)
+                     startActivity(intent)
+                 }else{
+                     Log.d("TestTest", "Exception while trying to register with google: ${it.exception.toString()}")
+                     Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                 }
+         }
     }
 
     fun singOut(){
