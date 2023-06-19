@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SignInActivity"
-    android:background="@color/pinkRedLight">
+    android:background="@color/pinkRedLight"
+    tools:context=".Activities.SignInActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:textAlignment="center"
             android:text="Sign In"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="60sp"
             android:textStyle="bold"
@@ -46,12 +46,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/pinkRedDeep"
-                    app:hintTextColor="@color/pinkRedDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
+                    app:boxStrokeColor="@color/pinkRedDeep"
+                    app:hintTextColor="@color/pinkRedDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -71,13 +71,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/pinkRedDeep"
-                    app:hintTextColor="@color/pinkRedDeep"
+                    android:outlineAmbientShadowColor="@color/pinkRedDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
-                    android:outlineAmbientShadowColor="@color/pinkRedDeep"
+                    app:boxStrokeColor="@color/pinkRedDeep"
+                    app:hintTextColor="@color/pinkRedDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutEmailInput"
@@ -98,8 +98,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp"
-                    android:text="Confirm"
                     android:backgroundTint="@color/pinkRedDeep"
+                    android:text="Confirm"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -110,11 +110,11 @@
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
             android:background="@color/pinkRedDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
-            app:layout_constraintEnd_toStartOf="@+id/tvOr"/>
+            app:layout_constraintEnd_toStartOf="@+id/tvOr" />
 
         <TextView
             android:id="@+id/tvOr"
@@ -125,7 +125,7 @@
             android:textColor="@color/pinkRedDeep"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cvRegistration"
+            app:layout_constraintBottom_toTopOf="@+id/btnBackToRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvSignIn" />
@@ -133,40 +133,23 @@
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
             android:background="@color/pinkRedDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
-            app:layout_constraintStart_toEndOf="@+id/tvOr"/>
+            app:layout_constraintStart_toEndOf="@+id/tvOr" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvRegistration"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnBackToRegistration"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:scaleY="1.05"
+            android:scaleX="1.05"
             android:layout_marginVertical="50dp"
-            app:cardCornerRadius="30dp"
+            android:backgroundTint="@color/pinkRedDeep"
+            android:text="Go back to complete registration"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/btnBackToRegistration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:backgroundTint="@color/pinkRedDeep"
-                    android:text="Registration"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

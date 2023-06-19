@@ -77,7 +77,7 @@ class RegistrationActivity : AppCompatActivity() {
                 binding.layoutPasswordInput.helperText = "8+ symbols!"
                 return@setOnClickListener
             } else {
-                if (binding.etConfirmingPassword.text.toString() !=  binding.etPassword.text.toString()){
+                if (binding.etConfirmingPassword.text.toString() != binding.etPassword.text.toString()){
                     //Если
                     Toast.makeText(this, "Duplicate your password to register!", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -106,15 +106,21 @@ class RegistrationActivity : AppCompatActivity() {
                     Toast.makeText(this, "Make sure, you are entering the correct email address", Toast.LENGTH_SHORT).show()
                 }
         }
-        binding.btnGoToSignIn.setOnClickListener{
-            Log.d("TestTest", "btnSignIn was clicked")
+        binding.btnGoogleSignIn.setOnClickListener{
+            Log.d("TestTest", "btnGoogleSignIn was clicked")
             signInGoogle()
+        }
+        binding.btnGoToSignIn.setOnClickListener {
+            Log.d("TestTest", "btnGoToSignIn was clicked")
+            startActivity(Intent(this, SignInActivity::class.java))
         }
     }
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
+        Log.d("TestTest", "if(result.resultCode == Activity.RESULT_OK) - запуск на проверку")
         if(result.resultCode == Activity.RESULT_OK){
+            Log.d("TestTest", "if(result.resultCode == Activity.RESULT_OK) - подтверждение")
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             if(task.isSuccessful){
                 val account : GoogleSignInAccount? = task.result
@@ -125,11 +131,15 @@ class RegistrationActivity : AppCompatActivity() {
                 Log.d("TestTest", "Exception while trying to register with google: ${task.exception.toString()}")
                 Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
             }
+        } else {
+            Log.d("TestTest", "if(result.resultCode == Activity.RESULT_OK) - не ок")
+            Log.d("TestTest", "${result.resultCode} - $result")
         }
     }
 
     private fun signInGoogle(){
         val signInIntent = client.signInIntent
+        Log.d("TestTest", "val signInIntent = client.signInIntent")
         launcher.launch(signInIntent)
     }
 

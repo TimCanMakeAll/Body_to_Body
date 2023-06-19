@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/placeholder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RegistrationActivity"
-    android:background="@color/grayBlueLight">
+    android:background="@color/grayBlueLight"
+    tools:context=".Activities.RegistrationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:textAlignment="center"
             android:text="Registration"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="60sp"
             android:textStyle="bold"
@@ -48,12 +47,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
+                    app:boxStrokeColor="@color/grayBlueDeep"
+                    app:hintTextColor="@color/grayBlueDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -73,12 +72,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
+                    app:boxStrokeColor="@color/grayBlueDeep"
+                    app:hintTextColor="@color/grayBlueDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutEmailInput"
@@ -100,13 +99,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
+                    android:outlineAmbientShadowColor="@color/grayBlueDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
-                    android:outlineAmbientShadowColor="@color/grayBlueDeep"
+                    app:boxStrokeColor="@color/grayBlueDeep"
+                    app:hintTextColor="@color/grayBlueDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutPasswordInput"
@@ -127,8 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp"
-                    android:text="Confirm"
                     android:backgroundTint="@color/grayBlueDeep"
+                    android:text="Confirm"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -139,22 +138,21 @@
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
             android:background="@color/grayBlueDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
-            app:layout_constraintEnd_toStartOf="@+id/tvOr"/>
+            app:layout_constraintEnd_toStartOf="@+id/tvOr" />
 
         <TextView
             android:id="@+id/tvOr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="35dp"
             android:text="or"
             android:textColor="@color/grayBlueDeep"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cvSignIn"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoogleSignIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvRegistration" />
@@ -162,41 +160,37 @@
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
             android:background="@color/grayBlueDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
-            app:layout_constraintStart_toEndOf="@+id/tvOr"/>
+            app:layout_constraintStart_toEndOf="@+id/tvOr" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvSignIn"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnGoogleSignIn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="50dp"
-            app:cardCornerRadius="30dp"
+            android:layout_marginVertical="10dp"
+            android:scaleY="1.05"
+            android:scaleX="1.05"
+            android:backgroundTint="@color/grayBlueDeep"
+            android:text="Sign in with Google account"
+            app:icon="@drawable/img_google"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoToSignIn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnGoToSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleY="1.05"
+            android:scaleX="1.05"
+            android:layout_marginVertical="30dp"
+            android:backgroundTint="@color/grayBlueDeep"
+            android:text="Log into with an existing account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/btnGoToSignIn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:backgroundTint="@color/grayBlueDeep"
-                    android:text="Sing in"
-                    app:icon="@drawable/img_google"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
