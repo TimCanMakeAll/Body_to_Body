@@ -108,12 +108,11 @@ class RegistrationActivity : AppCompatActivity() {
         }
         binding.btnGoToSignIn.setOnClickListener{
             Log.d("TestTest", "btnSignIn was clicked")
-            startActivity(Intent(this, SignInActivity::class.java))
-            //signInGoogle()
+            signInGoogle()
         }
     }
 
-    val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == Activity.RESULT_OK){
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
@@ -140,7 +139,6 @@ class RegistrationActivity : AppCompatActivity() {
              .addOnCompleteListener{
                  if(it.isSuccessful){
                      val intent : Intent = Intent(this, MainPageActivity::class.java)
-                     //intent.putExtra("ActivitySignOut", false)
                      startActivity(intent)
                  }else{
                      Log.d("TestTest", "Exception while trying to register with google: ${it.exception.toString()}")
