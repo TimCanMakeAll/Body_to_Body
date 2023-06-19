@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/placeholder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RegistrationActivity"
-    android:background="@color/grayBlueLight">
+    tools:context=".Activities.SignInActivity"
+    android:background="@color/pinkRedLight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/wave_registration_screen">
+        android:background="@drawable/wave_sign_in_screen">
 
         <TextView
-            android:id="@+id/tvRegistrationLabel"
+            android:id="@+id/tvSignInLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:textAlignment="center"
-            android:text="Registration"
+            android:text="Sign In"
             android:textColor="@color/white"
             android:textSize="60sp"
             android:textStyle="bold"
@@ -29,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvRegistration"
+            android:id="@+id/cvSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -48,8 +46,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
+                    app:boxStrokeColor="@color/pinkRedDeep"
+                    app:hintTextColor="@color/pinkRedDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
@@ -73,12 +71,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
+                    app:boxStrokeColor="@color/pinkRedDeep"
+                    app:hintTextColor="@color/pinkRedDeep"
                     app:boxCornerRadiusBottomEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusTopStart="15dp"
+                    android:outlineAmbientShadowColor="@color/pinkRedDeep"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutEmailInput"
@@ -91,48 +90,20 @@
                         android:hint="Enter you password here:"
                         android:inputType="textPassword"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutConfirmPasswordInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginVertical="10dp"
-                    app:boxStrokeColor="@color/grayBlueDeep"
-                    app:hintTextColor="@color/grayBlueDeep"
-                    app:boxCornerRadiusBottomEnd="15dp"
-                    app:boxCornerRadiusBottomStart="15dp"
-                    app:boxCornerRadiusTopEnd="15dp"
-                    app:boxCornerRadiusTopStart="15dp"
-                    android:outlineAmbientShadowColor="@color/grayBlueDeep"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutPasswordInput"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etConfirmingPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Enter you password here:"
-                        android:inputType="textPassword"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btnConfirmRegistration"
+                    android:id="@+id/btnConfirmSignIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp"
                     android:text="Confirm"
-                    android:backgroundTint="@color/grayBlueDeep"
+                    android:backgroundTint="@color/pinkRedDeep"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutConfirmPasswordInput" />
+                    app:layout_constraintTop_toBottomOf="@+id/layoutPasswordInput" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -141,7 +112,7 @@
             android:layout_height="1dp"
             android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
-            android:background="@color/grayBlueDeep"
+            android:background="@color/pinkRedDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
             app:layout_constraintEnd_toStartOf="@+id/tvOr"/>
 
@@ -151,25 +122,25 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="35dp"
             android:text="or"
-            android:textColor="@color/grayBlueDeep"
+            android:textColor="@color/pinkRedDeep"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cvSignIn"
+            app:layout_constraintBottom_toTopOf="@+id/cvRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvRegistration" />
+            app:layout_constraintTop_toBottomOf="@id/cvSignIn" />
 
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
             android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="10dp"
-            android:background="@color/grayBlueDeep"
+            android:background="@color/pinkRedDeep"
             app:layout_constraintBottom_toBottomOf="@+id/tvOr"
             app:layout_constraintStart_toEndOf="@+id/tvOr"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvSignIn"
+            android:id="@+id/cvRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -184,13 +155,12 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/btnGoToSignIn"
+                    android:id="@+id/btnBackToRegistration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:backgroundTint="@color/grayBlueDeep"
-                    android:text="Sing in"
-                    app:icon="@drawable/img_google"
+                    android:backgroundTint="@color/pinkRedDeep"
+                    android:text="Registration"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

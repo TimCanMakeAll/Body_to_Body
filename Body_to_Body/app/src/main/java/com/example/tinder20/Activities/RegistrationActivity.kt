@@ -1,19 +1,15 @@
 package com.example.tinder20.Activities
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tinder20.R
 import com.example.tinder20.databinding.ActivityRegistrationBinding
 import com.example.tinder20.functions.hashString
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -55,7 +51,7 @@ class RegistrationActivity : AppCompatActivity() {
             if (intent.getBooleanExtra("AccountSingOut", false)){
                 //если пользователь выходит из аккаунта
                 Log.d("TestTest", "RegistrationActivity - AccountSingOut - ${intent.getBooleanExtra("AccountSingOut", false)}")
-                singOut()
+                signOut()
                 Log.d("TestTest", "RegistrationActivity - currentUser - ${mAuth.currentUser?.email.toString()}")
             } else {
                 //логика перехода на основной экран
@@ -64,8 +60,8 @@ class RegistrationActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnConfirmRegistaration.setOnClickListener {
-            binding.progressBar.visibility = View.VISIBLE
+        binding.btnConfirmRegistration.setOnClickListener {
+
             val dbEmail = binding.etEmail.text.toString().trim()
             val dbPassword = binding.etPassword.text.toString().trim()
             if (dbEmail.isEmpty()) {
@@ -79,9 +75,15 @@ class RegistrationActivity : AppCompatActivity() {
             if (binding.etPassword.text.toString().length < 8) {
                 binding.layoutPasswordInput.setHelperTextColor(this.getColorStateList(R.color.redError))
                 binding.layoutPasswordInput.helperText = "8+ symbols!"
-                binding.progressBar.visibility = View.GONE
                 return@setOnClickListener
-            } else { binding.layoutPasswordInput.isHelperTextEnabled = false }
+            } else {
+                if (binding.etConfirmingPassword.text.toString() !=  binding.etPassword.text.toString()){
+                    //Если
+                    Toast.makeText(this, "Duplicate your password to register!", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                binding.layoutPasswordInput.isHelperTextEnabled = false
+            }
 
             val hashedPassword = hashString(dbPassword)
             FirebaseAuth.getInstance().fetchSignInMethodsForEmail(dbEmail)
@@ -103,10 +105,11 @@ class RegistrationActivity : AppCompatActivity() {
                     Log.d("TestTest", "invalid email(")
                     Toast.makeText(this, "Make sure, you are entering the correct email address", Toast.LENGTH_SHORT).show()
                 }
-            binding.progressBar.visibility = View.GONE
         }
-        binding.btnSingIn.setOnClickListener{
-            signInGoogle()
+        binding.btnGoToSignIn.setOnClickListener{
+            Log.d("TestTest", "btnSignIn was clicked")
+            startActivity(Intent(this, SignInActivity::class.java))
+            //signInGoogle()
         }
     }
 
@@ -125,10 +128,12 @@ class RegistrationActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun signInGoogle(){
         val signInIntent = client.signInIntent
         launcher.launch(signInIntent)
     }
+
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
          auth.signInWithCredential(credential)
@@ -144,7 +149,7 @@ class RegistrationActivity : AppCompatActivity() {
          }
     }
 
-    fun singOut(){
+    private fun signOut(){
         auth.signOut()
     }
 
