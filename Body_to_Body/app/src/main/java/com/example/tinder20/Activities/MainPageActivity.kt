@@ -3,6 +3,12 @@ package com.example.tinder20.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.example.tinder20.Fragments.CardSelectionFragment
+import com.example.tinder20.Fragments.ChatFragment
+import com.example.tinder20.Fragments.LocationDatingFragment
+import com.example.tinder20.Fragments.PersonalitySearchFragment
+import com.example.tinder20.Fragments.ProfileFragment
 import com.example.tinder20.R
 import com.example.tinder20.databinding.ActivityMainPageBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -12,29 +18,55 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainPageActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainPageBinding
+    private lateinit var binding: ActivityMainPageBinding
 
-    private lateinit var client: GoogleSignInClient
+    private val profileFragment = ProfileFragment()
+    private val cardSelectionFragment = CardSelectionFragment()
+    private val locationDatingFragment = LocationDatingFragment()
+    private val chatFragment = ChatFragment()
+    private val personalitySearchFragment = PersonalitySearchFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
 
         binding = ActivityMainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnSingOut.setOnClickListener {
-            options?.let {
-                client = GoogleSignIn.getClient(this, it)
+        val bottomNavigationMenu = binding.bottomNavigationMenu
+        bottomNavigationMenu.selectedItemId = com.example.tinder20.R.id.cardSelectionFragment
+        bottomNavigationMenu.setOnItemSelectedListener {
+
+            when (it.itemId) {
+
+                R.id.cardSelectionFragment -> {
+                    makeCurrentFragment(cardSelectionFragment)
+                }
+
+                R.id.profileFragment -> {
+                    makeCurrentFragment(profileFragment)
+                }
+
+                R.id.locationDateFragment -> {
+                    makeCurrentFragment(locationDatingFragment)
+                }
+
+                R.id.chatFragment -> {
+                    makeCurrentFragment(chatFragment)
+                }
+
+                R.id.personalitySearchFragment -> {
+                    makeCurrentFragment(personalitySearchFragment)
+                }
             }
-            if(client != null) {
-                client.revokeAccess()
-            }
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, RegistrationActivity::class.java).putExtra("AccountSingOut", true))
+            true
+        }
+    }
+
+    private fun makeCurrentFragment(fragment: Fragment){
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentHolder, fragment)
+            commit()
         }
     }
 }
