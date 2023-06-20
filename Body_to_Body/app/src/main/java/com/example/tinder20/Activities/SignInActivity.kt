@@ -8,9 +8,11 @@ import androidx.core.graphics.drawable.toDrawable
 import com.example.tinder20.R
 import com.example.tinder20.databinding.ActivityMainPageBinding
 import com.example.tinder20.databinding.ActivitySignInBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
 
+    private lateinit var mAuth : FirebaseAuth
     lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,9 @@ class SignInActivity : AppCompatActivity() {
         val window = this.window
         window.statusBarColor = this.resources.getColor(R.color.pinkRedDeep)
 
+        binding.btnConfirmSignIn.setOnClickListener{
+
+        }
         binding.btnBackToRegistration.setOnClickListener {
             startActivity(Intent(this, RegistrationActivity::class.java))
         }

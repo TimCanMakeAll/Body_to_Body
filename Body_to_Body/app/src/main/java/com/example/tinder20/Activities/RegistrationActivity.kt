@@ -21,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 
 class RegistrationActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     private lateinit var mAuth : FirebaseAuth
     private lateinit var binding: ActivityRegistrationBinding
     private lateinit var client: GoogleSignInClient
@@ -34,82 +33,79 @@ class RegistrationActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        auth = Firebase.auth
-
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         client = GoogleSignIn.getClient(this, options)
 
         Log.d("TestTest", "RegistrationActivity - onCreate")
 
         if(mAuth.currentUser != null){
-            //если пользователь зарегестрирован
             Log.d("TestTest", "RegistrationActivity - currentUser!=null - ${mAuth.currentUser?.email.toString()}")
             if (intent.getBooleanExtra("AccountSingOut", false)){
-                //если пользователь выходит из аккаунта
                 Log.d("TestTest", "RegistrationActivity - AccountSingOut - ${intent.getBooleanExtra("AccountSingOut", false)}")
                 signOut()
                 Log.d("TestTest", "RegistrationActivity - currentUser - ${mAuth.currentUser?.email.toString()}")
             } else {
-                //логика перехода на основной экран
                 Log.d("TestTest", "this session is in progress from an account: ${mAuth.currentUser?.email.toString()}")
                 startActivity(Intent(this, MainPageActivity::class.java))
             }
         }
 
         binding.btnConfirmRegistration.setOnClickListener {
-
             val dbEmail = binding.etEmail.text.toString().trim()
             val dbPassword = binding.etPassword.text.toString().trim()
+            val hashedPassword = hashString(dbPassword)
             if (dbEmail.isEmpty()) {
-                Toast.makeText(this, "You should enter email!", Toast.LENGTH_SHORT).show()
+                binding.layoutEmailInput.helperText = "You should enter email!"
                 return@setOnClickListener
             }
             if (dbPassword.isEmpty()) {
-                Toast.makeText(this, "You should enter password!", Toast.LENGTH_SHORT).show()
+                binding.layoutPasswordInput.helperText = "You should enter password!"
                 return@setOnClickListener
             }
             if (binding.etPassword.text.toString().length < 8) {
-                binding.layoutPasswordInput.setHelperTextColor(this.getColorStateList(R.color.redError))
                 binding.layoutPasswordInput.helperText = "8+ symbols!"
                 return@setOnClickListener
             } else {
                 if (binding.etConfirmingPassword.text.toString() != binding.etPassword.text.toString()){
-                    //Если
-                    Toast.makeText(this, "Duplicate your password to register!", Toast.LENGTH_SHORT).show()
+                    binding.layoutConfirmPasswordInput.helperText = "Duplicate your password correctly!"
                     return@setOnClickListener
                 }
-                binding.layoutPasswordInput.isHelperTextEnabled = false
             }
+            binding.layoutEmailInput.isHelperTextEnabled = false
+            binding.layoutPasswordInput.isHelperTextEnabled = false
+            binding.layoutConfirmPasswordInput.isHelperTextEnabled = false
 
-            val hashedPassword = hashString(dbPassword)
             FirebaseAuth.getInstance().fetchSignInMethodsForEmail(dbEmail)
                 .addOnSuccessListener {
                     mAuth.createUserWithEmailAndPassword(dbEmail, hashedPassword)
                         .addOnSuccessListener {
-                            //логика, когда произошла зарегистрация новый пользователь
-                            Log.d("TestTest", "You registered in app")
-                            startActivity(Intent(this, MainPageActivity::class.java))
+                            Log.d("TestTest", "Entered e-mail")
+                            mAuth.currentUser?.sendEmailVerification()
+                                ?.addOnCompleteListener{
+                                    startActivity(Intent(this, verification::class.java))
+                                }
                         }
                         .addOnFailureListener{
-                            //логика когда юзер не зарегестрировался, тк в БД уже есть аккаунт с таким email
                             Log.d("TestTest", "This email registered in app")
-                            Toast.makeText(this, "An account with this email is already registered, you can sing in to your account", Toast.LENGTH_SHORT).show()
+                            binding.layoutEmailInput.helperText = "This account already exists!"
                         }
                 }
                 .addOnFailureListener{
-                    //логика когда пользователь ввел неккоректный email, тип которого не подходит для БД
-                    Log.d("TestTest", "invalid email(")
-                    Toast.makeText(this, "Make sure, you are entering the correct email address", Toast.LENGTH_SHORT).show()
+                    Log.d("TestTest", "already exists")
+                    binding.layoutEmailInput.helperText = "Incorrect e-mail!"
+                    return@addOnFailureListener
                 }
+            binding.layoutEmailInput.isHelperTextEnabled = false
         }
+
         binding.btnGoogleSignIn.setOnClickListener{
             Log.d("TestTest", "btnGoogleSignIn was clicked")
             signInGoogle()
         }
+
         binding.btnGoToSignIn.setOnClickListener {
             Log.d("TestTest", "btnGoToSignIn was clicked")
             startActivity(Intent(this, SignInActivity::class.java))
@@ -145,10 +141,10 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-         auth.signInWithCredential(credential)
+         mAuth.signInWithCredential(credential)
              .addOnCompleteListener{
                  if(it.isSuccessful){
-                     val intent : Intent = Intent(this, MainPageActivity::class.java)
+                     val intent = Intent(this, MainPageActivity::class.java)
                      startActivity(intent)
                  }else{
                      Log.d("TestTest", "Exception while trying to register with google: ${it.exception.toString()}")
@@ -158,7 +154,7 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun signOut(){
-        auth.signOut()
+        mAuth.signOut()
     }
 
     companion object {
