@@ -4,70 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/peachLight"
     tools:context=".Activities.verification">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/wave_sign_in_screen"
-        android:backgroundTint="@color/yellowDeep" >
+        android:background="@drawable/wave_verify_registration_screen">
 
-        <Button
-            android:id="@+id/btnVerification"
-            android:layout_width="300sp"
-            android:layout_height="75sp"
-            android:layout_weight="1"
-            android:text="Check Verification"
-            android:textColor="@color/skyBlueDark"
-            android:textSize="25sp"
-            android:backgroundTint="@color/yellowDeep"
+        <TextView
+            android:id="@+id/tvVerificationLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Verification"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvVerification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvInstruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center"
+                    android:text="Follow the link that was sent to your e-mail."
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnVerification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:backgroundTint="@color/peachDeep"
+                    android:scaleX="1.05"
+                    android:scaleY="1.05"
+                    android:text="Check Verification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvInstruction" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
+            android:background="@color/peachDeep"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+            app:layout_constraintEnd_toStartOf="@+id/tvOr" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvOr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Follow the link that was sent to your e-mail."
-            android:textColor="@color/redError"
-            android:textSize="25sp"
-            android:layout_marginTop="175sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/btnVerification"
+            android:layout_marginVertical="35dp"
+            android:text="or"
+            android:textColor="@color/peachDeep"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnBackToRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/cvVerification" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="8dp"
+            android:background="@color/peachDeep"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+            app:layout_constraintStart_toEndOf="@+id/tvOr" />
+
+        <Button
+            android:id="@+id/btnBackToRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:backgroundTint="@color/peachDeep"
+            android:scaleX="1.05"
+            android:scaleY="1.05"
+            android:text="Back to registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tvVerificationLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Verification"
-        android:textAlignment="center"
-        android:textColor="@color/skyBlueDark"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnBackToRegistration"
-        android:layout_width="300sp"
-        android:layout_height="75sp"
-        android:textSize="25sp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/skyBlueDark"
-        android:backgroundTint="@color/yellowDeep"
-        android:text="Back to registration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

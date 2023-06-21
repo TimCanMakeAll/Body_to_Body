@@ -13,8 +13,12 @@
     <color name="pinkPurpleLight">#E2CFE0</color>
 
     <!--    yellowHoney-->
-    <color name="yellowHoneyDeep">#C37E0E</color>
-    <color name="yellowHoneyLight">#E2DDCF</color>
+    <color name="yellowHoneyDeep">#C3870E</color>
+    <color name="yellowHoneyLight">#F4E4B6</color>f25c54
+
+    <!--    peach-->
+    <color name="peachDeep">#97312B</color>
+    <color name="peachLight">#F1C1C1</color>
 
 <!--    purple-->
     <color name="purpleDark">#2C0839</color>
