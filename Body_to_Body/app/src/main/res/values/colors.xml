@@ -8,9 +8,13 @@
     <color name="grayBlueDeep">#2E4C55</color>
     <color name="grayBlueLight">#CFDDE2</color>
 
-<!--    pinkRed-->
-    <color name="pinkRedDeep">#552E51</color>
-    <color name="pinkRedLight">#E2CFE0</color>
+<!--    pinkPurple-->
+    <color name="pinkPurpleDeep">#552E51</color>
+    <color name="pinkPurpleLight">#E2CFE0</color>
+
+    <!--    yellowHoney-->
+    <color name="yellowHoneyDeep">#C37E0E</color>
+    <color name="yellowHoneyLight">#E2DDCF</color>
 
 <!--    purple-->
     <color name="purpleDark">#2C0839</color>

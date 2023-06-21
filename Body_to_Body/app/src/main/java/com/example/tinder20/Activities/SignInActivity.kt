@@ -1,12 +1,9 @@
 package com.example.tinder20.Activities
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.graphics.drawable.toDrawable
 import com.example.tinder20.R
-import com.example.tinder20.databinding.ActivityMainPageBinding
 import com.example.tinder20.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -22,7 +19,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val window = this.window
-        window.statusBarColor = this.resources.getColor(R.color.pinkRedDeep)
+        window.statusBarColor = this.resources.getColor(R.color.pinkPurpleDeep)
 
         binding.btnConfirmSignIn.setOnClickListener{
 
