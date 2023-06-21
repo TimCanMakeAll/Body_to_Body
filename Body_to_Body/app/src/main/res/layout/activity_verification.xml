@@ -6,48 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".Activities.verification">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please check e-mail that you entered and open link"
-        android:textSize="17dp"
-        android:textColor="@color/pinkLight"
-        app:layout_constraintBottom_toTopOf="@+id/layoutVerification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutVerification"
-        android:layout_width="300dp"
-        android:layout_height="125dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
-        android:outlineAmbientShadowColor="@color/pinkDeep"
-        app:boxCornerRadiusBottomEnd="15dp"
-        app:boxCornerRadiusBottomStart="15dp"
-        app:boxCornerRadiusTopEnd="15dp"
-        app:boxCornerRadiusTopStart="15dp"
-        app:boxStrokeColor="@color/pinkDeep"
-        app:hintTextColor="@color/pinkDeep"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wave_sign_in_screen"
+        android:backgroundTint="@color/yellowDeep" >
 
         <Button
             android:id="@+id/btnVerification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="300sp"
+            android:layout_height="75sp"
             android:layout_weight="1"
-            android:text="Check Verification" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="Check Verification"
+            android:textColor="@color/skyBlueDark"
+            android:textSize="25sp"
+            android:backgroundTint="@color/yellowDeep"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Follow the link that was sent to your e-mail."
+            android:textColor="@color/redError"
+            android:textSize="25sp"
+            android:layout_marginTop="175sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/btnVerification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvVerificationLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Verification"
+        android:textAlignment="center"
+        android:textColor="@color/skyBlueDark"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnBackToRegistration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300sp"
+        android:layout_height="75sp"
+        android:textSize="25sp"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/skyBlueDark"
+        android:backgroundTint="@color/yellowDeep"
         android:text="Back to registration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
