@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFragment : Fragment() {
 
@@ -33,10 +34,18 @@ class ProfileFragment : Fragment() {
             .requestEmail()
             .build()
 
+        checkForSingOut(options)
+        checkForDeletingCurrentAccount(options)
+
+        return binding.root
+    }
+
+    private fun checkForSingOut(options: GoogleSignInOptions){
+
         binding.btnSingOut.setOnClickListener {
 
-            Log.d("TestTest", "btnSingOut was clicked")
-            options?.let {
+            Log.d("TestTest", "\nbtnSingOut was clicked")
+            options.let {
                 client = GoogleSignIn.getClient(requireActivity(), it)
             }
             if (client != null) {
@@ -44,6 +53,7 @@ class ProfileFragment : Fragment() {
                 client.revokeAccess()
             }
             FirebaseAuth.getInstance().signOut()
+
             startActivity(
                 Intent(requireActivity(), RegistrationActivity::class.java).putExtra(
                     "AccountSingOut",
@@ -51,8 +61,33 @@ class ProfileFragment : Fragment() {
                 )
             )
         }
+    }
 
-        return binding.root
+    private fun checkForDeletingCurrentAccount(options: GoogleSignInOptions){
+
+        binding.btnDeleteCurrentAccount.setOnClickListener {
+
+            Log.d("TestTest", "\nbtnDeleteCurrentAccount was clicked")
+            val currentUser = FirebaseAuth.getInstance().currentUser
+
+            options.let {
+                client = GoogleSignIn.getClient(requireActivity(), it)
+            }
+            if (client != null) {
+                Log.d("TestTest", "Revoke access")
+                client.revokeAccess()
+            }
+            if (currentUser != null) {
+
+                currentUser.delete()
+            }
+
+            startActivity(
+                Intent(requireActivity(), RegistrationActivity::class.java).putExtra(
+                    "AccountDeleted", true
+                )
+            )
+        }
     }
 
     companion object {

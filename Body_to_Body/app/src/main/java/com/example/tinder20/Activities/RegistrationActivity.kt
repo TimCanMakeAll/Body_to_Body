@@ -43,7 +43,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         if(mAuth.currentUser != null){
             Log.d("TestTest", "RegistrationActivity - currentUser!=null - ${mAuth.currentUser?.email.toString()}")
-            if (intent.getBooleanExtra("AccountSingOut", false)){
+            if (intent.getBooleanExtra("AccountSingOut", false) || intent.getBooleanExtra("AccountDeleted", false)){
                 Log.d("TestTest", "RegistrationActivity - AccountSingOut - ${intent.getBooleanExtra("AccountSingOut", false)}")
                 signOut()
                 Log.d("TestTest", "RegistrationActivity - currentUser - ${mAuth.currentUser?.email.toString()}")
