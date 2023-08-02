@@ -21,6 +21,9 @@ class verification : AppCompatActivity() {
         binding = ActivityVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val window = this.window
+        window.statusBarColor = this.resources.getColor(R.color.peachDeep)
+
         mAuth = FirebaseAuth.getInstance()
 
         binding.btnVerification.setOnClickListener{
