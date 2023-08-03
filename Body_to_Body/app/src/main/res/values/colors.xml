@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="redError">#980000</color>
+    <color name="transparent">#00980000</color>
 
 <!--    grayBlue-->
     <color name="grayBlueDeep">#2E4C55</color>
@@ -25,6 +26,11 @@
     <color name="purpleDeep">#540d6e</color>
     <color name="purpleLight">#BF8AD3</color>
 
+    <!--    softPurple-->
+    <color name="softPurpleDark">#963A4A</color>
+    <color name="softPurpleDeep">#540d6e</color>
+    <color name="softPurpleLight">#ead7da</color>
+
 <!--    green-->
     <color name="greeneDark">#08472C</color>
     <color name="greenDeep">#0ead69</color>
@@ -44,4 +50,13 @@
     <color name="skyBlueDark">#195547</color>
     <color name="skyBlueDeep">#3bceac</color>
     <color name="skyBlueLight">#91E4D1</color>
+
+<!--    blue-->
+    <color name="blueDark">#193955</color>
+    <color name="blueDeep">#3B8ECE</color>
+    <color name="blueLight">#91C7E4</color>
+
+<!--    circle progressBar-->
+    <color name="grayEmpty">#858585</color>
+    <color name="blueProgress">#0099BF</color>
 </resources>

@@ -32,8 +32,13 @@ class MainPageActivity : AppCompatActivity() {
         binding = ActivityMainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val window = this.window
+        window.statusBarColor = this.resources.getColor(R.color.softPurpleDark)
+
+        makeCurrentFragment(cardSelectionFragment)
+
         val bottomNavigationMenu = binding.bottomNavigationMenu
-        bottomNavigationMenu.selectedItemId = com.example.tinder20.R.id.cardSelectionFragment
+        bottomNavigationMenu.selectedItemId = R.id.cardSelectionFragment
         bottomNavigationMenu.setOnItemSelectedListener {
 
             when (it.itemId) {
