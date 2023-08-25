@@ -1,22 +1,22 @@
 package com.example.tinder20.Activities
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.tinder20.R
-import com.example.tinder20.databinding.ActivityRegistrationBinding
 import com.example.tinder20.databinding.ActivityVerificationBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class verification : AppCompatActivity() {
+class VerificationActivity : AppCompatActivity() {
 
     private lateinit var mAuth : FirebaseAuth
     private lateinit var binding: ActivityVerificationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("TestTest", ".\nVerificationActivity - onCreate")
 
         binding = ActivityVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,6 +34,7 @@ class verification : AppCompatActivity() {
                     if (updatedUser != null && updatedUser.isEmailVerified) {
                         Log.d("TestTest", "User email verified")
                         startActivity(Intent(this, MainPageActivity::class.java))
+                        Log.d("TestTest", "TEST")
                     } else {
                         Log.d("TestTest", "User email not verified")
                     }

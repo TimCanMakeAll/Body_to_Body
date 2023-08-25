@@ -16,8 +16,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class RegistrationActivity : AppCompatActivity() {
 
@@ -27,6 +25,8 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("TestTest", "RegistrationActivity - onCreate")
 
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,12 +39,12 @@ class RegistrationActivity : AppCompatActivity() {
             .build()
         client = GoogleSignIn.getClient(this, options)
 
-        Log.d("TestTest", "RegistrationActivity - onCreate")
+        Log.d("TestTest", "RegistrationActivity - currentUser = ${mAuth.currentUser?.email.toString()}")
 
         if(mAuth.currentUser != null){
             Log.d("TestTest", "RegistrationActivity - currentUser!=null - ${mAuth.currentUser?.email.toString()}")
             if (intent.getBooleanExtra("AccountSingOut", false) || intent.getBooleanExtra("AccountDeleted", false)){
-                Log.d("TestTest", "RegistrationActivity - AccountSingOut - ${intent.getBooleanExtra("AccountSingOut", false)}")
+                Log.d("TestTest", "RegistrationActivity - AccountSingOut/Deleted - ${intent.getBooleanExtra("AccountSingOut", false)}")
                 signOut()
                 Log.d("TestTest", "RegistrationActivity - currentUser - ${mAuth.currentUser?.email.toString()}")
             } else {
@@ -85,7 +85,7 @@ class RegistrationActivity : AppCompatActivity() {
                             Log.d("TestTest", "Entered e-mail")
                             mAuth.currentUser?.sendEmailVerification()
                                 ?.addOnCompleteListener{
-                                    startActivity(Intent(this, verification::class.java))
+                                    startActivity(Intent(this, VerificationActivity::class.java))
                                 }
                         }
                         .addOnFailureListener{
@@ -146,6 +146,7 @@ class RegistrationActivity : AppCompatActivity() {
                  if(it.isSuccessful){
                      val intent = Intent(this, MainPageActivity::class.java)
                      startActivity(intent)
+                     Log.d("TestTest", "test")
                  }else{
                      Log.d("TestTest", "Exception while trying to register with google: ${it.exception.toString()}")
                      Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
