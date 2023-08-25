@@ -3,6 +3,8 @@ package com.example.tinder20.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.tinder20.Fragments.CardSelectionFragment
 import com.example.tinder20.Fragments.ChatFragment
@@ -18,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainPageActivity : AppCompatActivity() {
 
+    var backPressedTime: Long = 0
+
     private lateinit var binding: ActivityMainPageBinding
 
     private val profileFragment = ProfileFragment()
@@ -28,6 +32,8 @@ class MainPageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("TestTest", ".\nMainPageActivity - onCreate")
 
         binding = ActivityMainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,11 +73,21 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun makeCurrentFragment(fragment: Fragment){
+    private fun makeCurrentFragment(fragment: Fragment) {
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentHolder, fragment)
             commit()
         }
+    }
+
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Press back again to leave the app.", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }
